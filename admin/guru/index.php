@@ -47,11 +47,20 @@ $data = mysqli_query($conn, "
                         <td><?= $g['jenis_kelamin'] ?></td>
                         <td><?= $g['no_hp'] ?></td>
                         <td><?= $g['username'] ?></td>
-                        <td>
-                            <button onclick='openEdit(<?= json_encode($g) ?>)' class="text-blue-600">
+                        <td class="px-4 py-2 text-center space-x-2">
+                            <button
+                                onclick='openEdit(<?= json_encode($g) ?>)'
+                                class="text-sm bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded">
                                 Edit
                             </button>
+
+                            <button
+                                onclick="hapusGuru(<?= $g['id'] ?>)"
+                                class="text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded">
+                                Hapus
+                            </button>
                         </td>
+
                     </tr>
                 <?php endwhile; ?>
                 </tbody>
@@ -138,5 +147,12 @@ $data = mysqli_query($conn, "
         function closeEdit(){ modalEdit.classList.add('hidden') }
     </script>
 
+    <script>
+        function hapusGuru(id) {
+            if (confirm('Yakin ingin menghapus data guru ini?')) {
+                window.location.href = 'delete.php?id=' + id;
+            }
+        }
+    </script>
 </body>
 </html>
